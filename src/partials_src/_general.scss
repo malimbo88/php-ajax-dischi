@@ -1,0 +1,19 @@
+//_general
+//Reset
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+//General
+img {
+  display: block;
+  width: 100%;
+}
+
+.general_container {
+  max-width: $max_width_general_container;
+  background-color: $primary_color;
+  margin: 0 auto;
+}

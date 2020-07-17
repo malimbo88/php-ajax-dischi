@@ -1,0 +1,22 @@
+//_section music
+.albums_list {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  justify-content: center;
+
+  .album {
+    flex-basis: calc(100% / #{$number_of_inline_album});
+    padding: $space_between_albums;
+
+    .album_box {
+      background-color: $secondary_color;
+      padding: $padding_album_box;
+      text-align: center;
+
+      .album_info > span {
+        display: block;
+      }
+    }
+  }
+}

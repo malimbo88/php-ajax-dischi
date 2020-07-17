@@ -1,6 +1,6 @@
 <?php
 // Database
-include __DIR__ . "/partials/database.php";
+include __DIR__ . "/partials_php/database.php";
 ?>
 
 <!DOCTYPE html>
@@ -8,6 +8,8 @@ include __DIR__ . "/partials/database.php";
   <head>
     <meta charset="utf-8">
     <title>php-ajax-dischi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="dist/style.css">
   </head>
   <body>
 
@@ -33,7 +35,7 @@ include __DIR__ . "/partials/database.php";
 
                 <?php foreach ($database as $album_key => $album_values) {?>
                   <!-- single album <?php $album_values["title"] ?> -->
-                  <li>
+                  <li class="album">
 
                     <!-- album box -->
                     <div class="album_box">
