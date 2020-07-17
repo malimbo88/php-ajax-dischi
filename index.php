@@ -74,5 +74,7 @@ include __DIR__ . "/partials_php/database.php";
     </div>
     <!-- end general container -->
 
+    <!-- javaScript -->
+    <script type="text/javascript" src="dist/script.js"></script>
   </body>
 </html>

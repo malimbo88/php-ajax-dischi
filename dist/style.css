@@ -31,19 +31,15 @@ header {
   list-style: none;
   justify-content: center;
 }
-
 .albums_list .album {
   flex-basis: calc(100% / 4);
-  padding: 20px;
+  padding: 1%;
 }
-
 .albums_list .album .album_box {
   background-color: #455a64;
-  padding: 40px;
+  padding: 10%;
   text-align: center;
 }
-
 .albums_list .album .album_box .album_info > span {
   display: block;
 }
-
