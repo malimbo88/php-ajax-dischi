@@ -16,63 +16,44 @@ include __DIR__ . "/partials_php/database.php";
     <!-- general container -->
     <div class="general_container">
 
-      <!-- Header -->
-      <header>
-      </header>
-      <!-- end Header -->
+      <?php include __DIR__ . "/partials_php/header.php"; ?>
 
-      <!-- Main -->
-      <main>
+      <?php include __DIR__ . "/partials_php/main.php"; ?>
 
-        <!-- wrapper main -->
-        <div class="wrapper_main">
-
-          <!-- section music -->
-          <section class="section_music">
-            <?php if (isset($database) && !empty($database)) {?>
-              <!-- albums list -->
-              <ul class="albums_list">
-
-                <?php foreach ($database as $album_key => $album_values) {?>
-                  <!-- single album <?php $album_values["title"] ?> -->
-                  <li class="album">
-
-                    <!-- album box -->
-                    <div class="album_box">
-
-                      <!-- poster image -->
-                      <div class="poster_img">
-                        <img src="<?php echo $album_values["poster"]; ?>" alt="">
-                      </div>
-                      <!-- end poster image -->
-
-                      <!-- album info -->
-                      <div class="album_info">
-                        <h4><?php echo $album_values["title"]; ?></h4>
-                        <span><?php echo $album_values["author"]; ?></span>
-                        <span><?php echo $album_values["year"]; ?></span>
-                      </div>
-                      <!-- album info -->
-
-                    </div>
-                  <!-- end album box -->
-
-                  </li>
-                <?php }; ?>
-
-              </ul>
-              <!-- end albums list <?php $album_values["title"] ?> -->
-            <?php }; ?>
-          </section>
-          <!-- end section music -->
-
-        </div>
-        <!-- end wrapper main -->
-
-      </main>
-      <!-- end Main -->
     </div>
     <!-- end general container -->
+
+    <!-- Handlebars album template-->
+    <script id="album_template" type="text/x-handlebars-template">
+
+      <!-- single album -->
+      <li class="album">
+
+        <!-- album box -->
+        <div class="album_box">
+
+          <!-- poster image -->
+          <div class="poster_img">
+            <img src="{{poster}}" alt="{{title}} poster">
+          </div>
+          <!-- end poster image -->
+
+          <!-- album info -->
+          <div class="album_info">
+            <h4>{{title}}</h4>
+            <span>{{author}}</span>
+            <span>{{year}}</span>
+          </div>
+          <!-- album info -->
+
+        </div>
+      <!-- end album box -->
+
+      </li>
+      <!-- end single album -->
+
+    </script>
+    <!-- end Handlebars album template-->
 
     <!-- javaScript -->
     <script type="text/javascript" src="dist/script.js"></script>
