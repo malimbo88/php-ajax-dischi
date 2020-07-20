@@ -55,6 +55,16 @@ include __DIR__ . "/partials_php/database.php";
     </script>
     <!-- end Handlebars album template-->
 
+    <!-- Handlebars option template-->
+    <script id="option_template" type="text/x-handlebars-template">
+
+      <!-- single option -->
+      <option value="{{author}}">{{author}}</option>
+      <!-- end single option -->
+
+    </script>
+    <!-- end Handlebars option template-->
+
     <!-- javaScript -->
     <script type="text/javascript" src="dist/script.js"></script>
   </body>
