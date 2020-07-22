@@ -6,11 +6,9 @@ var Handlebars = require("handlebars");
 $(document).ready(function() {
 //url server api
 var serverApi = "http://localhost:8888/php-ajax-dischi/partials_php/server.php";
-//Query author list
-var queryAuthorList = "\"author_list\": \"true\""
 
 //chimata api avvio pagina popolo select autori
-apiAuthorOptions(serverApi, queryAuthorList);
+apiAuthorOptions(serverApi);
 
 //chiamata api in avvio pagina popolo lista album
 apiCall(serverApi, "");
@@ -28,7 +26,7 @@ $("#author_select").change(function() {
 
 //FUNCTIONS
 //Function apiCall
-function apiCall(url, authorSerch) {
+function apiCall(url, authorSearch) {
   //Ajax
    $.ajax(
 
@@ -36,7 +34,7 @@ function apiCall(url, authorSerch) {
      url: url,
      method: "GET",
      data: {
-       author: authorSerch
+       author: authorSearch
      },
      success: function(dataSuccess) {
        printSuccess(dataSuccess);
@@ -54,7 +52,7 @@ function apiCall(url, authorSerch) {
 
 //Function printSuccess
 function printSuccess(jsonArray) {
-  for (var i = 0; i < jsonArray.lenght; i++) {
+  for (var i = 0; i < jsonArray.length; i++) {
     thisAlbum = jsonArray[i];
 
     //Handlebars
@@ -70,21 +68,20 @@ function printSuccess(jsonArray) {
 //end Function printSuccess
 
 //Function apiAuthorOptions
-function apiAuthorOptions(url, authorListQuery) {
+function apiAuthorOptions(url) {
   //Ajax
   $.ajax(
     {
       url: url,
       method: "GET",
       data: {
-        authorListQuery
+        "author_list": "true"
       },
       success: function(dataSuccess) {
-        console.log(dataSuccess);
-        //printOptions(dataSuccess)
+        printOptions(dataSuccess)
       },
-      error: function() {
-        alert("Error");
+      error: function(a, b, dataError) {
+        alert("Error" + dataError);
       }
     }
   );
@@ -94,17 +91,17 @@ function apiAuthorOptions(url, authorListQuery) {
 
 //Function printOptions
 function printOptions(jsonArray) {
-  for (var i = 0; i < jsonArray.lenght; i++) {
+  for (var i = 0; i < jsonArray.length; i++) {
     thisAuthor = jsonArray[i];
 
     //Handlebars
-    var source = $("option_template").html();
+    var source = $("#option_template").html();
     var template = Handlebars.compile(source);
     var context = thisAuthor;
     var html = template(context);
 
     //append Handlebars results
-    $(".author_select").append(html);
+    $("#author_select").append(html);
   };
 };
 //end Function printOptions

@@ -8,7 +8,7 @@ $author_query = $_GET["author"];
 $author_list_query = $_GET["author_list"];
 
 //se il valore query string di "author_list" !NON e` vuoto
-if (!empty($author_list_query)) {
+if ($author_list_query === "true") {
   $author_list_database = [];
 
   //ciclo database per cercare tutti gli array che rappresentano gli album
@@ -25,8 +25,8 @@ if (!empty($author_list_query)) {
   echo json_encode($author_list_database);
 }
 
-//se il valore query string di "author" !NON e` vuoto
-if (!empty($author_query)) {
+
+elseif (!empty($author_query)) {
   $author_search_database = [];
   //ciclo database per cercare un array con chiave author === al valore di query string
   foreach($database as $album) {
@@ -38,8 +38,9 @@ if (!empty($author_query)) {
     }
   }
 }
-//se il valore query string e` vuoto
+
+
 else {
   echo json_encode($database);
-}
+};
 ?>

@@ -16095,11 +16095,9 @@ var Handlebars = __webpack_require__(/*! handlebars */ "./node_modules/handlebar
 
 $(document).ready(function () {
   //url server api
-  var serverApi = "http://localhost:8888/php-ajax-dischi/partials_php/server.php"; //Query author list
+  var serverApi = "http://localhost:8888/php-ajax-dischi/partials_php/server.php"; //chimata api avvio pagina popolo select autori
 
-  var queryAuthorList = "\"author_list\": \"true\""; //chimata api avvio pagina popolo select autori
-
-  apiAuthorOptions(serverApi, queryAuthorList); //chiamata api in avvio pagina popolo lista album
+  apiAuthorOptions(serverApi); //chiamata api in avvio pagina popolo lista album
 
   apiCall(serverApi, ""); //leggo il valore di option relativo alla scelta dell'utente su input select
 
@@ -16112,13 +16110,13 @@ $(document).ready(function () {
   }); //FUNCTIONS
   //Function apiCall
 
-  function apiCall(url, authorSerch) {
+  function apiCall(url, authorSearch) {
     //Ajax
     $.ajax({
       url: url,
       method: "GET",
       data: {
-        author: authorSerch
+        author: authorSearch
       },
       success: function success(dataSuccess) {
         printSuccess(dataSuccess);
@@ -16134,7 +16132,7 @@ $(document).ready(function () {
   //Function printSuccess
 
   function printSuccess(jsonArray) {
-    for (var i = 0; i < jsonArray.lenght; i++) {
+    for (var i = 0; i < jsonArray.length; i++) {
       thisAlbum = jsonArray[i]; //Handlebars
 
       var source = $("#album_template").html();
@@ -16151,19 +16149,19 @@ $(document).ready(function () {
   ; //end Function printSuccess
   //Function apiAuthorOptions
 
-  function apiAuthorOptions(url, authorListQuery) {
+  function apiAuthorOptions(url) {
     //Ajax
     $.ajax({
       url: url,
       method: "GET",
       data: {
-        authorListQuery: authorListQuery
+        "author_list": "true"
       },
       success: function success(dataSuccess) {
-        console.log(dataSuccess); //printOptions(dataSuccess)
+        printOptions(dataSuccess);
       },
-      error: function error() {
-        alert("Error");
+      error: function error(a, b, dataError) {
+        alert("Error" + dataError);
       }
     }); //end Ajax
   }
@@ -16172,15 +16170,15 @@ $(document).ready(function () {
   //Function printOptions
 
   function printOptions(jsonArray) {
-    for (var i = 0; i < jsonArray.lenght; i++) {
+    for (var i = 0; i < jsonArray.length; i++) {
       thisAuthor = jsonArray[i]; //Handlebars
 
-      var source = $("option_template").html();
+      var source = $("#option_template").html();
       var template = Handlebars.compile(source);
       var context = thisAuthor;
       var html = template(context); //append Handlebars results
 
-      $(".author_select").append(html);
+      $("#author_select").append(html);
     }
 
     ;
